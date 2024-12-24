@@ -317,7 +317,7 @@ def AdminDashboardView(request):
             data['time'] = data['Date'].dt.strftime('%Y-%m-%d %H:%M:%S')
         data['Date'] = pd.to_datetime(data['Date'])  
         data.set_index('Date', inplace=True) 
-        data = data.drop(columns=('Adj Close',ticker))
+        #data = data.drop(columns=('Adj Close',ticker))
         data.columns = [col[0] for col in data.columns]
         bt = Backtest(data, PivotalStrategy, commission=.000,
               exclusive_orders=True,cash=10000000)

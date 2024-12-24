@@ -1,16 +1,15 @@
 {
-    "version": 2,
     "builds": [
       {
-        "src": "test.html",
-        "use": "@vercel/static"
+        "src": "TradingView/wsgi.py",
+        "use": "@ardnt/vercel-python-wsgi",
+        "config": { "maxLambdaSize": "15mb" }
       }
     ],
     "routes": [
       {
-        "src": "/api/(.*)",
-        "dest": "http://16.171.116.126:8000/accounts/login/"
+        "src": "/(.*)",
+        "dest": "TradingView/wsgi.py"
       }
     ]
   }
-  

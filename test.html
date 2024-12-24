@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anzonymous" referrerpolicy="no-referrer" />
+    <script src="https://s3.tradingview.com/tv.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <title>Dashboard</title>
+</head>
+<body>
+
+
+    <!-- popup container -->
+
+
+    <div id="popup" class="popup-container" style="display: none;">
+        <div class="popup-header">
+            Symbol Search
+            <button onclick="closePopup()" style="float: right; background-color:transparent; color:#00E4A3; border: none; padding: 5px 10px; cursor: pointer;"><i class="fa-solid fa-x"></i></button>
+        </div>
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search for symbols..." onkeyup="filterSymbols()">
+        <div class="symbol-list" id="symbolList">
+            <div class="symbol-item">MSFT - Microsoft Corporation</div>
+            <div class="symbol-item">AAPL - Apple Inc.</div>
+            <div class="symbol-item">GOOG - Alphabet Inc.</div>
+            <div class="symbol-item">AMZN - Amazon.com Inc.</div>
+            <div class="symbol-item">TSLA - Tesla Inc.</div>
+            <!-- Add more symbols as needed -->
+        </div>
+    </div>
+
+
+<div class="header">
+    <div class="title">Dashboard</div>
+    <div class="profile" id="profile">
+        <div class="profile-icon">
+            <img src="image/profile.webp" alt="profile-image">
+        </div>
+        <div class="dropdown" id="dropdown">
+            <a href="#">View Profile</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="main">
+        <div class="chart">
+            <div class="graph-chart">
+                <!-- Top Bar with Search and Timer -->
+                <div class="top-bar">
+                    <!-- Search 1 Section (Left) -->
+                    <div class="search1">
+                        <div class="serch-main" onclick="openPopup()">
+                            <p class="p-icon"><i class="fa-solid fa-magnifying-glass"></i></p>
+                            <span>MSFT</span>
+                        </div>
+                        <div class="serch-dropdown" id="search1-dropdown">
+                            <input type="text" placeholder="Search...">
+                            <button onclick="searchFunction()">Search</button>
+                        </div>
+                    </div>
+        
+                    <!-- Timer Section (Middle) -->
+                    <div class="timer">
+                        <span class="hour"></span>
+                        <span class="min"></span>
+                        <span class="sec"></span>
+        
+                        <button class="dropdown-btn" onclick="toggleTimerDropdown(event)">
+                            1 minute <i class="fa fa-caret-down"></i>
+                        </button>
+        
+                        <!-- Timer Dropdown -->
+                        <div class="timer-dropdown" id="timer-dropdown">
+                            <option value="1m">1 minute</option>
+                            <option value="2m">2 minutes</option>
+                            <option value="3m">3 minutes</option>
+                            <option value="5m">5 minutes</option>
+                            <option value="10m">10 minutes</option>
+                            <option value="15m">15 minutes</option>
+                            <option value="30m">30 minutes</option>
+                            <option value="1h">1 hour</option>
+                            <option value="2h">2 hours</option>
+                        </div>
+                    </div>  
+        
+                    <!-- Search 2 Section (Right) -->
+                    <div class="serach-2">
+                        <div class="serch-main" onclick="openPopup()">
+                            <p><i class="fa-solid fa-chart-bar"></i></p>
+                            <span>Indecator</span>
+                        </div>
+                        <div class="serch-dropdown" id="search2-dropdown">
+                            <input type="text" placeholder="Search...">
+                            <button onclick="searchFunction()">Search</button>
+                        </div>
+                    </div>
+                </div>
+
+               
+ 
+                    <div id="tradingview-widget-container"></div>
+               
+            </div>
+        </div>
+        <div class="stock-info">
+            <div class="top-bar bottom-bar">
+              <p id="test1">Overview</p>
+              <p id="test2">List Of Trade</p>
+              <p id="test3">Performance</p>
+            </div>
+          
+            <div class="content-bottom">
+              <div id="content1" class="content" style="display:none;">
+                <div class="row-content">
+                    <div class="box-content">
+                        <p>Net Profit <i class="fa-solid fa-circle-info"></i></p>
+                        <p class="sm-text">2,800</p>
+                    </div>
+                    <div class="box-content">
+                        <p>Total Close Trade <i class="fa-solid fa-circle-info"></i></p>
+                        <p class="sm-text">58</p>
+                    </div>
+                    <div class="box-content">
+                        <p>percent Profitable <i class="fa-solid fa-circle-info"></i></p>
+                        <p class="sm-text">36.52</p>
+                    </div>
+                    <div class="box-content">
+                        <p>Profit Fector <i class="fa-solid fa-circle-info"></i></p>
+                        <p class="sm-text">0.958</p>
+                    </div>
+                    <div class="box-content">
+                        <p>Max Dropdown <i class="fa-solid fa-circle-info"></i></p>
+                        <p class="sm-text">18.56%</p>
+                    </div>
+                    
+                    <div class="box-content">
+                        <p>Avg Trade <i class="fa-solid fa-circle-info"></i></p>
+                        <p class="sm-text">2,800</p>
+                    </div>
+                    <div class="box-content">
+                        <p>Avg # <i class="fa-solid fa-circle-info"></i></p>
+                        <p class="sm-text">12</p>
+                    </div>
+                    <div class="box-content">
+                        <p>Net Profit <i class="fa-solid fa-circle-info"></i></p>
+                        <p class="sm-text">45%</p>
+                    </div>
+                    <div class="box-content">
+                        <p>Total Trade <i class="fa-solid fa-circle-info"></i></p>
+                        <p class="sm-text">31</p>
+                    </div>
+                    <div class="box-content">
+                        <p>Total Loss <i class="fa-solid fa-circle-info"></i></p>
+                        <p class="sm-text">15%</p>
+                    </div>
+                </div>
+              </div>
+              <div id="content2" class="content" style="display:none;">
+                <div class="table-container">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Trade #</th>
+                          <th>Type</th>
+                          <th>Signal</th>
+                          <th>Date/Time</th>
+                          <th>Price</th>
+                          <th>Contracts</th>
+                          <th>Profit</th>
+                          <th>Cum. Profit</th>
+                          <th>Run-up</th>
+                          <th>Drawdown</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>2801</td>
+                          <td>Exit Short</td>
+                          <td>Open</td>
+                          <td>2024-12-10</td>
+                          <td>6,057.59 USD</td>
+                          <td>15.5</td>
+                          <td>351.69 USD<br><span class="small-text">0.37%</span></td>
+                          <td>-61,086.59 USD<br><span class="small-text">0.04%</span></td>
+                          <td>429.35 USD<br><span class="small-text">0.46%</span></td>
+                          <td>121.06 USD<br><span class="small-text">0.13%</span></td>
+                        </tr>
+                        <tr>
+                          <td>2800</td>
+                          <td>Entry Short</td>
+                          <td>BarDn</td>
+                          <td>2024-12-10</td>
+                          <td>6,057.59 USD</td>
+                          <td>15.5</td>
+                          <td>270.94 USD<br><span class="small-text">0.29%</span></td>
+                          <td>-61,438.29 USD<br><span class="small-text">0.03%</span></td>
+                          <td>927.83 USD<br><span class="small-text">0.99%</span></td>
+                          <td>104.16 USD<br><span class="small-text">0.11%</span></td>
+                        </tr>
+                        <!-- Add more rows here -->
+                      </tbody>
+                    </table>
+                  </div>    
+              </div>
+
+              <div id="content3" class="content" style="display:none;">
+                <div class="table-wrapper">
+                    <table class="data-table">
+                      <thead>
+                        <tr>
+                          <th>Title</th>
+                          <th>All</th>
+                          <th>Long</th>
+                          <th>Short</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Net Profit</td>
+                          <td class="negative-value">-61,438.29 USD</td>
+                          <td>247,249.20 USD</td>
+                          <td class="negative-value">-308,687.49 USD</td>
+                        </tr>
+                        <tr>
+                          <td>Gross Profit</td>
+                          <td>2,132,038.62 USD</td>
+                          <td>1,295,206.16 USD</td>
+                          <td>836,832.06 USD</td>
+                        </tr>
+                        <tr>
+                          <td>Gross Loss</td>
+                          <td>2,193,476.91 USD</td>
+                          <td>1,047,957.35 USD</td>
+                          <td>1,145,519.56 USD</td>
+                        </tr>
+                        <tr>
+                          <td>Max Run-up</td>
+                          <td>208,371.04 USD</td>
+                          <td>104.80%</td>
+                          <td>17.69%</td>
+                        </tr>
+                        <tr>
+                          <td>Max Drawdown</td>
+                          <td>262,681.44 USD</td>
+                          <td>22.34%</td>
+                          <td>22.34%</td>
+                        </tr>
+                        <tr>
+                          <td>Buy & Hold Return</td>
+                          <td>92,869,853.25 USD</td>
+                          <td>9,286.9%</td>
+                          <td>9,286.9%</td>
+                        </tr>
+                        <tr>
+                          <td>Sharpe Ratio</td>
+                          <td>-0.385</td>
+                          <td>-0.385</td>
+                          <td>-0.426</td>
+                        </tr>
+                        <tr>
+                          <td>Sortino Ratio</td>
+                          <td>-0.426</td>
+                          <td>-0.426</td>
+                          <td>-0.426</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+            </div>
+          </div>
+          
+    </div>
+  
+</div>
+
+<script>
+    const profile = document.getElementById('profile');
+    const dropdown = document.getElementById('dropdown');
+
+    profile.addEventListener('click', () => {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!profile.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+</script>
+
+
+<script>
+    // Function to toggle search dropdown visibility
+    function toggleSearchDropdown(id) {
+        const dropdown = document.getElementById(id);
+        const isCurrentlyVisible = dropdown.style.display === 'block';
+        
+        // Close all dropdowns
+        closeAllDropdowns();
+        
+        // If the dropdown is not already open, open it
+        if (!isCurrentlyVisible) {
+            dropdown.style.display = 'block';
+        }
+    }
+
+    // Close all search dropdowns
+    function closeAllDropdowns() {
+        const dropdowns = document.querySelectorAll('.serch-dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+    }
+
+    // Close the dropdown if clicked outside
+    document.addEventListener('click', function(event) {
+        const search1Dropdown = document.getElementById('search1-dropdown');
+        const search2Dropdown = document.getElementById('search2-dropdown');
+        
+        // Check if the click was outside the search input areas
+        if (!event.target.closest('.search1') && !event.target.closest('.serach-2')) {
+            closeAllDropdowns();
+        }
+    });
+
+    // Search function (for demonstration)
+    function searchFunction() {
+        const searchQuery = event.target.previousElementSibling.value;
+        alert('Searching for: ' + searchQuery);
+    }
+
+   
+</script>
+
+
+<script>
+    // Function to toggle the timer dropdown
+    function toggleTimerDropdown(event) {
+        const dropdown = document.getElementById('timer-dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        event.stopPropagation(); // Prevent the dropdown from closing when clicking inside
+    }
+
+    // Close the dropdown if clicked outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('timer-dropdown');
+        const button = document.querySelector('.dropdown-btn');
+        if (!event.target.closest('.timer') && !event.target.closest('.dropdown-btn')) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    // Function to update the timer based on selected option
+    function updateTimer(selectedOption) {
+        const timerDisplay = document.querySelector('.timer');
+        let hour = 0;
+        let minute = 0;
+        let second = 0;
+
+        // Map the selected option to time
+        if (selectedOption === '1m') {
+            minute = 1;
+        } else if (selectedOption === '2m') {
+            minute = 2;
+        } else if (selectedOption === '3m') {
+            minute = 3;
+        } else if (selectedOption === '5m') {
+            minute = 5;
+        } else if (selectedOption === '10m') {
+            minute = 10;
+        } else if (selectedOption === '15m') {
+            minute = 15;
+        } else if (selectedOption === '30m') {
+            minute = 30;
+        } else if (selectedOption === '1h') {
+            hour = 1;
+        } else if (selectedOption === '2h') {
+            hour = 2;
+        }
+
+        // Update the timer display
+        document.querySelector('.hour').textContent = hour ? hour + 'h' : '';
+        document.querySelector('.min').textContent = minute ? minute + 'm' : '';
+        document.querySelector('.sec').textContent = second ? second : '';
+
+        // Change the button text to show the selected time
+        document.querySelector('.dropdown-btn').innerHTML = `${hour ? hour + ' hour' : ''} ${minute ? minute + ' minutes' : ''} <i class="fa fa-caret-down"></i>`;
+    }
+
+    // Set event listeners for the dropdown options
+    const options = document.querySelectorAll('.timer-dropdown option');
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            updateTimer(option.value);
+            document.getElementById('timer-dropdown').style.display = 'none';
+        });
+    });
+</script>
+
+   <script>
+        function openPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function filterSymbols() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const symbols = document.querySelectorAll('.symbol-item');
+
+            symbols.forEach(symbol => {
+                const symbolText = symbol.textContent.toLowerCase();
+                if (symbolText.includes(input)) {
+                    symbol.style.display = '';
+                } else {
+                    symbol.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+
+
+<script>
+    // Function to open the popup in the center of the screen
+function openPopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block';
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+    popup.style.zIndex = '9999'; // Ensure it appears on top
+
+    document.body.classList.add('blur');
+}
+
+// Function to close the popup
+function closePopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none';
+
+    document.body.classList.remove('blur');
+
+}
+
+// Function to filter symbols in the popup
+function filterSymbols() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const symbols = document.querySelectorAll('.symbol-item');
+
+    symbols.forEach(symbol => {
+        const symbolText = symbol.textContent.toLowerCase();
+        if (symbolText.includes(input)) {
+            symbol.style.display = '';
+        } else {
+            symbol.style.display = 'none';
+        }
+    });
+}
+
+</script>
+
+<script>
+    // Set default content display
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("content1").style.display = "block";
+      document.getElementById("content2").style.display = "none";
+      document.getElementById("content3").style.display = "none";
+    });
+  
+    document.getElementById("test1").addEventListener("click", function() {
+      document.getElementById("content1").style.display = "block";
+      document.getElementById("content2").style.display = "none";
+      document.getElementById("content3").style.display = "none";
+    });
+  
+    document.getElementById("test2").addEventListener("click", function() {
+      document.getElementById("content2").style.display = "block";
+      document.getElementById("content1").style.display = "none";
+      document.getElementById("content3").style.display = "none";
+    });
+  
+    document.getElementById("test3").addEventListener("click", function() {
+      document.getElementById("content3").style.display = "block";
+      document.getElementById("content1").style.display = "none";
+      document.getElementById("content2").style.display = "none";
+    });
+  </script>
+  
+
+
+<script>
+    new TradingView.widget({
+        width: "100%",
+        height: "100%",
+        symbol: "MSFT",
+        interval: "60",
+        timezone: "Etc/UTC",
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#f1f3f6",
+        enable_publishing: true,
+        allow_symbol_change: true,
+        container_id: "tradingview-widget-container",
+        hide_side_toolbar: true,
+        hide_top_toolbar :false,
+        studies: [
+            "MACD",
+            "RSI",
+            "Moving Average"
+        ],
+        show_popup_button: true,
+        popup_width: "1000",
+        popup_height: "650",
+        withdateranges: true,
+        watchlist: [],
+        custom_css_url: "",
+        debug: false,
+        autosize: true,
+        isTransparent: false,
+        details: true,
+        news: ["headlines"],
+        hide_legend: false,
+        save_image: false,
+ 
+       
+    });
+</script>
+</body>
+</html>

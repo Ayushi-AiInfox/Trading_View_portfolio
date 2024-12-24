@@ -1,0 +1,421 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<div class="content">
+    <div class="main">
+        <div class="chart">
+            <div class="graph-chart">
+                <!-- Top Bar with Search and Timer -->
+                <div class="top-bar-main ">
+                    <!-- Search 1 Section (Left) -->
+                  
+                    <div class="timer">
+                        <div class="profile1" id="profile1">
+                            <div class="profile-icon-1">
+                               Screens
+                               <i class="fa fa-caret-down"></i>
+                            </div>
+                            <div class="dropdown1" id="dropdown1">
+                                <a href="../../../admin/dashboard">Screen-1</a>
+                                <a href="../../../admin/screen-2">Screen-2</a>
+                                <a href="../../../admin/screen-3">Screen-3</a>
+                            </div>
+                        </div>
+                        <p class="m-0 pl-3">{{symbol}}</p>
+                    </div>  
+
+
+                    
+                </div>    
+                <div id="trading-chart-wrapper">
+                    <div id="tradingview-widget-container">
+                    
+                    </div> </div>               
+            </div>
+        </div>
+        <div class="stock-info">
+            <div class="top-bar bottom-bar top-bar0">
+              
+              <p id="test2">Symbol data</p>
+             
+              <div class="profile2" id="profile2">
+                <div class="profile-icon-2">
+                   Change Symbol
+                </div>
+                <div class="dropdown2" id="dropdown2">
+                    {% for i in final_data %}
+                    <a href="#" class="dropdown-item" data-symbol="{{ i.symbol }}">{{ i.symbol }}</a>
+                    {% endfor %}
+                  
+                </div>
+            </div>
+            </div>
+          
+            <div class="content-bottom">
+              <div id="content2" class="content" >
+                <div class="table-container">
+                    <table>
+                      <thead>
+                        <tr>
+                          <td>Symbol</td>
+                          <td>price</td>
+                          <td>price change</td>
+                          <td>price change</td>
+                          <td>volume</td>
+                          <td>vol*price</td>
+                          <td>market cap</td>
+                          <td>technical rating</td>
+                          <td>sector</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for i in final_data %}
+                        <tr>
+                          <td >{{i.symbol}}</td>
+                          <td >{{i.price}}</td>
+                          <td >{{i.price_change}} </td>
+                          <td >{{i.percent_change}} </td>
+                          <td >{{i.volume}}</td>
+                          <td >{{i.vol_price}}</td>
+                          <td>{{i.market_cap}}</td>
+                          <td >{{i.technical_rating}}</td>
+                          <td >{{i.sector}}</td>
+                        </tr>
+                        {% endfor %}
+                        
+                        <!-- Add more rows here -->
+                      </tbody>
+                    </table>
+                  </div>    
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+<script>
+    // Attach a click event listener to the dropdown items
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropdownItems = document.querySelectorAll('.dropdown-item');
+      
+      dropdownItems.forEach((item) => {
+        item.addEventListener('click', function (event) {
+          event.preventDefault(); // Prevent the default anchor behavior
+          const selectedSymbol = this.dataset.symbol; // Get the symbol from the data attribute
+          
+          // Perform an AJAX request to save the selected symbol
+          fetch('../../admin/save-multi-symbol/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': getCSRFToken(), // Include CSRF token if using Django
+            },
+            body: JSON.stringify({ symbol: selectedSymbol }),
+          })
+          .then(response => {
+            if (response.ok) {
+              location.reload(true);
+              return response.json();
+            } else {
+              throw new Error('Failed to save symbol');
+            }
+          })
+          .then(data => {
+            console.log('Symbol saved:', data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+        });
+      });
+    });
+  </script>
+
+
+
+
+<script>
+
+
+
+    const profile2 = document.getElementById('profile2');
+    const dropdown2 = document.getElementById('dropdown2');
+
+    profile2.addEventListener('click', () => {
+        dropdown2.style.display = dropdown2.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!profile2.contains(event.target)) {
+            dropdown2.style.display = 'none';
+        }
+    });
+</script>
+
+<script>
+
+
+
+    const profile = document.getElementById('profile');
+    const dropdown = document.getElementById('dropdown');
+
+    profile.addEventListener('click', () => {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!profile.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+</script>
+
+<script>
+    const profile1 = document.getElementById('profile1');
+    const dropdown1 = document.getElementById('dropdown1');
+
+    profile1.addEventListener('click', () => {
+        dropdown1.style.display = dropdown1.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!profile1.contains(event.target)) {
+            dropdown1.style.display = 'none';
+        }
+    });
+</script>
+
+<script>
+
+    function toggleSearchDropdown(id) {
+        const dropdown = document.getElementById(id);
+        const isCurrentlyVisible = dropdown.style.display === 'block';
+    
+        closeAllDropdowns();
+        
+ 
+        if (!isCurrentlyVisible) {
+            dropdown.style.display = 'block';
+        }
+    }
+
+ 
+    function closeAllDropdowns() {
+        const dropdowns = document.querySelectorAll('.serch-dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+    }
+
+    document.addEventListener('click', function(event) {
+        const search1Dropdown = document.getElementById('search1-dropdown');
+        const search2Dropdown = document.getElementById('search2-dropdown');
+        
+
+        if (!event.target.closest('.search1') && !event.target.closest('.serach-2')) {
+            closeAllDropdowns();
+        }
+    });
+
+    function searchFunction() {
+        const searchQuery = event.target.previousElementSibling.value;
+        alert('Searching for: ' + searchQuery);
+    }
+
+   
+</script>
+
+
+<script>
+    
+    function toggleTimerDropdown(event) {
+        const dropdown = document.getElementById('timer-dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        event.stopPropagation(); 
+    }
+
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('timer-dropdown');
+        const button = document.querySelector('.dropdown-btn');
+        if (!event.target.closest('.timer') && !event.target.closest('.dropdown-btn')) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    function updateTimer(selectedOption) {
+        const timerDisplay = document.querySelector('.timer');
+        let hour = 0;
+        let minute = 0;
+        let second = 0;
+        if (selectedOption === '1d') {
+            day = 1;
+        }else if (selectedOption === '5d'){
+            day= 5;
+        }
+        saveInterval(selectedOption);
+
+        document.querySelector('.hour').textContent = hour ? hour + 'h' : '';
+        document.querySelector('.min').textContent = minute ? minute + 'm' : '';
+        document.querySelector('.sec').textContent = second ? second : '';
+        document.querySelector('.dropdown-btn').innerHTML = `${hour ? hour + ' hour' : ''} ${minute ? minute + ' minutes' : ''} <i class="fa fa-caret-down"></i>`;
+    }
+
+    const options = document.querySelectorAll('.timer-dropdown option');
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            updateTimer(option.value);
+            document.getElementById('timer-dropdown').style.display = 'none';
+        });
+    });
+</script>
+
+   <script>
+        function openPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function filterSymbols() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const symbols = document.querySelectorAll('.symbol-item');
+
+            symbols.forEach(symbol => {
+                const symbolText = symbol.textContent.toLowerCase();
+                if (symbolText.includes(input)) {
+                    symbol.style.display = '';
+                } else {
+                    symbol.style.display = 'none';
+                }
+            });
+        }
+    </script>
+<script>
+function openPopup() {
+    document.getElementById('popup').style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+}
+
+function filterSymbols() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const symbols = document.querySelectorAll('.symbol-item');
+
+    symbols.forEach(symbol => {
+        const text = symbol.textContent.toLowerCase();
+        symbol.style.display = text.includes(input) ? 'block' : 'none';
+    });
+}
+
+function selectSymbol(symbolText) {
+    const activeSearchMain = document.querySelector('.serch-main.active');
+    if (activeSearchMain) {
+        const spanElement = activeSearchMain.querySelector('span');
+        if (spanElement) {
+            spanElement.textContent = symbolText;
+        }
+    }
+
+    closePopup();
+}
+
+const symbolItems = document.querySelectorAll('.symbol-item');
+symbolItems.forEach(item => {
+    item.addEventListener('click', function () {
+        const symbolText = this.textContent.split(' - ')[0]; // Get the symbol code (e.g., MSFT)
+        selectSymbol(symbolText);
+    });
+});
+
+const searchMainDivs = document.querySelectorAll('.serch-main');
+searchMainDivs.forEach(div => {
+    div.addEventListener('click', function () {
+        searchMainDivs.forEach(d => d.classList.remove('active'));
+        this.classList.add('active');
+        openPopup();
+    });
+});
+
+
+function getCSRFToken() {
+        const cookieValue = document.cookie.split('; ').find(row => row.startsWith('csrftoken='));
+        return cookieValue ? cookieValue.split('=')[1] : '';
+}
+
+</script>
+
+
+<script>
+    const container = document.getElementById('tradingview-widget-container');
+
+    // Function to resize chart
+    const resizeChart = () => {
+        const width = container.clientWidth;
+        const height = container.clientHeight; // Dynamically adjust height
+        chart.resize(width, height);
+    };
+
+    const char_data = {{ chart_data|safe }}
+    // const trade_data = {{ trades_data|safe }};
+    // const vol_data = {{ volume_data|safe }};
+        
+    const chart = LightweightCharts.createChart(container, {
+        width: container.clientWidth,
+        height: 200, // Initial height based on container
+        layout: {
+            backgroundColor: '#494949',  
+            textColor: '#FFFFFF',       
+        },
+        grid: {
+            vertLines: { color: '#2B2B2B' }, 
+            horzLines: { color: '#2B2B2B' },
+        },
+        crosshair: {
+            mode: LightweightCharts.CrosshairMode.Normal,
+        },
+        priceScale: {
+            borderColor: '#555', 
+        },
+        timeScale: {
+            borderColor: '#555',
+        },
+    });
+
+    const candlestickSeries = chart.addCandlestickSeries({
+        upColor: '#4CAF50',       
+        downColor: '#F44336',     
+        borderUpColor: '#4CAF50',
+        borderDownColor: '#F44336',
+        wickUpColor: '#4CAF50',
+        wickDownColor: '#F44336',
+    });
+
+    candlestickSeries.setData(char_data);
+    // candlestickSeries.setMarkers(trade_data);
+
+    // const volumeSeries = chart.addHistogramSeries({
+    //     color: '#26a69a',
+    //     priceFormat: {
+    //         type: 'volume',
+    //     },
+    //     priceScaleId: '', 
+    //     scaleMargins: {
+    //         top: 0.7,
+    //         bottom: 0,
+    //     },
+    // });
+
+    // volumeSeries.setData(vol_data);
+    // chart.timeScale().fitContent();
+
+    // Call resizeChart on window resize
+    window.addEventListener('resize', resizeChart);
+
+    // Adjust chart size on page load
+    resizeChart();
+</script>
+
+
+{% endblock %}

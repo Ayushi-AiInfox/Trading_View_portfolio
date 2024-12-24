@@ -1,0 +1,379 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<div class="content">
+    <div class="main">
+        <div class="chart">
+            <div class="graph-chart">
+                <!-- Top Bar with Search and Timer -->
+                <div class="top-bar">
+                    <!-- Search 1 Section (Left) -->
+                    
+                    <!-- Timer Section (Middle) -->
+                    <div class="timer">
+                    
+        
+                      
+                   
+                        <div class="profile1" id="profile1">
+                            <div class="profile-icon-1">
+                               Screens
+                               <i class="fa fa-caret-down"></i>
+                            </div>
+                            <div class="dropdown1" id="dropdown1">
+                                <a href="../../../admin/dashboard">Screen-1</a>
+                                <a href="../../../admin/screen-2">Screen-2</a>
+                                <a href="../../../admin/screen-3">Screen-3</a>
+                            </div>
+                        </div>
+                        
+                    </div>  
+    
+                </div>
+                    
+                    <div id="trading-chart-wrapper">
+        
+                        <div class="chart-container" id="baseline-chart" style="width: 100%; height: 300px;"></div>
+                        <div class="chart-container" id="line-chart" style="width: 100%; height: 300px;"></div>
+                        <div class="chart-container" id="area-chart" style="width: 100%; height: 300px;"></div>
+                      </div>  
+            </div>
+        </div>
+
+        
+
+    </div>
+  
+</div>
+
+<script>
+    const chartWrapper = document.getElementById('trading-chart-wrapper');
+    const tradingChart = LightweightCharts.createChart(chartWrapper, {
+      layout: {
+        backgroundColor: '#1E1E1E', 
+        textColor: '#DDD',
+      },
+      grid: {
+        vertLines: { color: '#444' },
+        horzLines: { color: '#444' },
+      },
+      width: chartWrapper.offsetWidth,
+      height: chartWrapper.offsetHeight,
+      timeScale: { timeVisible: true },
+    });
+
+    const priceSeries = tradingChart.addCandlestickSeries({
+      upColor: '#26A69A',
+      downColor: '#EF5350',
+      borderVisible: false,
+      wickUpColor: '#26A69A',
+      wickDownColor: '#EF5350',
+    });
+
+  </script>
+
+<script>
+
+
+
+    const profile = document.getElementById('profile');
+    const dropdown = document.getElementById('dropdown');
+
+    profile.addEventListener('click', () => {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!profile.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+</script>
+
+<script>
+    const profile1 = document.getElementById('profile1');
+    const dropdown1 = document.getElementById('dropdown1');
+
+    profile1.addEventListener('click', () => {
+        dropdown1.style.display = dropdown1.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!profile1.contains(event.target)) {
+            dropdown1.style.display = 'none';
+        }
+    });
+</script>
+
+
+
+
+
+<script>
+
+    function toggleSearchDropdown(id) {
+        const dropdown = document.getElementById(id);
+        const isCurrentlyVisible = dropdown.style.display === 'block';
+        
+
+        closeAllDropdowns();
+        
+ 
+        if (!isCurrentlyVisible) {
+            dropdown.style.display = 'block';
+        }
+    }
+
+ 
+    function closeAllDropdowns() {
+        const dropdowns = document.querySelectorAll('.serch-dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+    }
+
+    document.addEventListener('click', function(event) {
+        const search1Dropdown = document.getElementById('search1-dropdown');
+        const search2Dropdown = document.getElementById('search2-dropdown');
+        
+
+        if (!event.target.closest('.search1') && !event.target.closest('.serach-2')) {
+            closeAllDropdowns();
+        }
+    });
+
+    function searchFunction() {
+        const searchQuery = event.target.previousElementSibling.value;
+        alert('Searching for: ' + searchQuery);
+    }
+
+   
+</script>
+
+
+
+   <script>
+        function openPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function filterSymbols() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const symbols = document.querySelectorAll('.symbol-item');
+
+            symbols.forEach(symbol => {
+                const symbolText = symbol.textContent.toLowerCase();
+                if (symbolText.includes(input)) {
+                    symbol.style.display = '';
+                } else {
+                    symbol.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+
+
+<script>
+    // Function to open the popup in the center of the screen
+function openPopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block';
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+    popup.style.zIndex = '9999'; 
+
+    document.body.classList.add('blur');
+}
+
+function closePopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none';
+
+    document.body.classList.remove('blur');
+
+}
+
+
+function filterSymbols() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const symbols = document.querySelectorAll('.symbol-item');
+
+    symbols.forEach(symbol => {
+        const symbolText = symbol.textContent.toLowerCase();
+        if (symbolText.includes(input)) {
+            symbol.style.display = '';
+        } else {
+            symbol.style.display = 'none';
+        }
+    });
+}
+</script>
+
+  
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("content1").style.display = "block";
+      document.getElementById("content2").style.display = "none";
+      document.getElementById("test1").classList.add("active");
+    });
+    
+    function setActiveTab(clickedTab, contentToShow) {
+      document.querySelectorAll(".tab-button").forEach(button => {
+        button.classList.remove("active");
+      });
+      
+      clickedTab.classList.add("active");
+    
+      document.getElementById("content1").style.display = "none";
+      document.getElementById("content2").style.display = "none";
+      document.getElementById(contentToShow).style.display = "block";
+    }
+    
+    document.getElementById("test1").addEventListener("click", function () {
+      setActiveTab(this, "content1");
+    });
+    document.getElementById("test2").addEventListener("click", function () {
+      setActiveTab(this, "content2");
+    });
+    </script>
+
+
+<script>
+function openPopup() {
+    document.getElementById('popup').style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+}
+
+function filterSymbols() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const symbols = document.querySelectorAll('.symbol-item');
+
+    symbols.forEach(symbol => {
+        const text = symbol.textContent.toLowerCase();
+        symbol.style.display = text.includes(input) ? 'block' : 'none';
+    });
+}
+
+function selectSymbol(symbolText) {
+    const activeSearchMain = document.querySelector('.serch-main.active');
+    if (activeSearchMain) {
+        const spanElement = activeSearchMain.querySelector('span');
+        if (spanElement) {
+            spanElement.textContent = symbolText;
+        }
+    }
+
+    closePopup();
+}
+
+const symbolItems = document.querySelectorAll('.symbol-item');
+symbolItems.forEach(item => {
+    item.addEventListener('click', function () {
+        const symbolText = this.textContent.split(' - ')[0]; // Get the symbol code (e.g., MSFT)
+        selectSymbol(symbolText);
+    });
+});
+
+const searchMainDivs = document.querySelectorAll('.serch-main');
+searchMainDivs.forEach(div => {
+    div.addEventListener('click', function () {
+        searchMainDivs.forEach(d => d.classList.remove('active'));
+        this.classList.add('active');
+        openPopup();
+    });
+});
+
+
+
+function getCSRFToken() {
+        const cookieValue = document.cookie.split('; ').find(row => row.startsWith('csrftoken='));
+        return cookieValue ? cookieValue.split('=')[1] : '';
+}
+
+</script>
+
+
+
+
+<script>
+    const data_ = {{ data|safe }};
+    
+  
+    function createResponsiveChart(containerId, createSeries) {
+      const container = document.getElementById(containerId);
+      const chart = LightweightCharts.createChart(container, {
+        width: container.clientWidth, 
+        height: 300,
+        layout: {
+          backgroundColor: '#494949',
+          textColor: '#FFFFFF',
+        },
+        grid: {
+          vertLines: { color: '#2B2B2B' },
+          horzLines: { color: '#2B2B2B' },
+        },
+        crosshair: {
+          mode: LightweightCharts.CrosshairMode.Normal,
+        },
+        priceScale: {
+          borderColor: '#555',
+        },
+        timeScale: {
+          borderColor: '#555',
+        },
+      });
+  
+      
+      const series = createSeries(chart);
+      series.setData(data_);
+      window.addEventListener('resize', () => {
+        chart.resize(container.clientWidth, 300);
+      });
+  
+      return chart;
+    }
+  
+
+    createResponsiveChart('baseline-chart', (chart) => {
+      return chart.addBaselineSeries({
+        baseValue: { type: 'price', price: 110 },
+        topFillColor1: 'rgba(38, 198, 218, 0.3)',
+        topFillColor2: 'rgba(38, 198, 218, 0.0)',
+        topLineColor: 'rgba(38, 198, 218, 1)',
+        bottomFillColor1: 'rgba(255, 82, 82, 0.3)',
+        bottomFillColor2: 'rgba(255, 82, 82, 0.0)',
+        bottomLineColor: 'rgba(255, 82, 82, 1)',
+      });
+    });
+  
+
+    createResponsiveChart('line-chart', (chart) => {
+      return chart.addLineSeries({
+        color: '#2962FF',
+        lineWidth: 2,
+      });
+    });
+  
+
+    createResponsiveChart('area-chart', (chart) => {
+      return chart.addAreaSeries({
+        topColor: 'rgba(76, 175, 80, 0.5)',
+        bottomColor: 'rgba(76, 175, 80, 0.0)',
+        lineColor: 'rgba(76, 175, 80, 1)',
+        lineWidth: 2,
+      });
+    });
+
+
+  </script>
+  
+
+{% endblock %}

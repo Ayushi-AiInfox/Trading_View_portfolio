@@ -1,0 +1,675 @@
+       
+body {
+    margin: 0;
+    font-family: "Rubik", sans-serif;
+    background: #111212 !important;
+}
+
+
+.rubik{
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+  }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color:  #1F1F1F;
+    color: white;
+    font-family: "Rubik", sans-serif;
+}
+
+.title{
+    color: #00E4A3;
+    font-size: 20px;
+}
+.header .profile {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
+
+.profile2{
+    margin-left: 40px;
+}
+
+.profile-icon-1{
+    cursor: pointer;
+}
+.profile-icon-2{
+    cursor: pointer;
+}
+.profile-icon img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.top-bar-main p{
+    padding-left: 20px;
+}
+
+.icon-left{
+    margin-left: 20px;
+}
+.drop-left{
+    left: 85px !important;
+}
+.title a{
+    text-decoration: none;
+    color: #00E4A3;
+}
+.dropdown {
+    display: none;
+    position: absolute !important;
+    z-index: 9999999;
+    top: 41px;
+    right: 0;
+    width: 130px;
+    background-color: #1F1F1F;
+    color: black;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 3px;
+}
+.dropdown1 {
+    display: none;
+    position: absolute;
+    z-index: 9999999;
+    top: 29px;
+    left: 0px;
+    right: 0;
+    width: 130px;
+    background-color: #1F1F1F;
+    color: black;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 3px;
+}
+.dropdown2 {
+    display: none;
+    position: absolute;
+    z-index: 9999999;
+    top: 40px;
+    right: 0;
+    width: 130px;
+    background-color: #1F1F1F;
+    color: black;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.top-bar0 {
+    display: flex;
+    gap: 20px;
+    background: #3f3f3f;
+    padding-top: 5px;
+    position: relative;
+    padding-right: 10px;
+    padding-left: 10px;
+    align-items: center;
+    padding-bottom: 5px;
+    color: #fff;
+    justify-content: space-between;
+}
+
+.dropdown a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: block;
+    padding: 5px 0;
+    font-family: "Rubik", sans-serif;
+    transition: 0.3s ease-in-out;
+}       
+
+.dropdown1 a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: block;
+    padding: 5px 0;
+    font-family: "Rubik", sans-serif;
+    transition: 0.3s ease-in-out;
+} 
+
+.dropdown2 a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: block;
+    padding: 5px 0;
+    font-family: "Rubik", sans-serif;
+    transition: 0.3s ease-in-out;
+} 
+.dropdown a:hover{
+    color: #00E4A3;
+}
+.dropdown1 a:hover{
+    color: #00E4A3;
+}
+
+.dropdown2 a:hover{
+    color: #00E4A3;
+}
+.content {
+    display: flex;
+    height: fit-content;
+    padding: 10px;
+}
+.main {
+    flex: 3;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+}
+
+.chart {
+
+    background-color: #000000;
+    box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
+    margin-bottom: 5px;
+    border-radius:5px;
+    resize: both;
+    overflow: auto;
+}
+
+.top-bar-main {
+    display: flex;
+    gap: 20px;
+    background: #3f3f3f;
+    padding-top: 10px;
+    position: relative;
+    padding-right: 10px;
+    padding-left: 10px;
+    align-items: center;
+    padding-bottom: 10px;
+    color: #fff;
+}
+.stock-info {
+    flex: 1;
+    background-color: #000000;
+    box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
+    resize: both;
+    overflow: auto;
+    margin-top: 10px;
+    border-radius:5px;
+}
+
+.sidebar {
+    /* flex: 1; */
+    background-color: #ffffff;
+    border-left: 1px solid #ccc;
+    padding: 10px;
+    /* overflow: auto; */
+}
+
+.watchlist {
+    list-style: none;
+    padding: 0;
+}
+
+.watchlist li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.watchlist li span {
+    font-size: 14px;
+    font-family: "Rubik", sans-serif;
+}
+
+.top-bar {
+    display: flex;
+    gap: 20px;
+    background:#3f3f3f;
+    padding-top: 5px;
+    position: relative;
+    padding-right: 10px;
+    padding-left: 10px;
+    align-items: center;
+    padding-bottom: 5px;
+    color: #fff;
+}
+.serch-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.serch-main span{
+    margin-left:5px;
+}
+  /* Search Section 1 (Left side) */
+  .search1, .serach-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #00e497;
+    position: relative;
+    padding: 5px;
+    border-radius: 5px;
+    }
+
+    button.dropdown-btn {
+        padding: 0px;
+        background: transparent;
+        border: none;
+        color: #fff;
+        border-radius: 0;
+        font-family: "Rubik", sans-serif;
+    }
+.search1 p, .serach-2 p {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.search1 span, .serach-2 span {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 100;
+}
+
+.serch-main {
+    display: flex;
+    align-items: center;
+}
+
+/* Dropdown Styles */
+.serch-dropdown {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 250px;
+    left: 0;
+    padding: 10px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    top: 40px;
+}
+
+/* Search Input with Icon */
+.serch-dropdown input {
+    width: 83%;
+    padding: 10px;
+    padding-left: 30px; /* Space for the search icon */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.serch-dropdown i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #888;
+}
+
+.serch-dropdown button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.serch-dropdown button:hover {
+    background-color: #218838;
+}
+
+/* Timer Section */
+.timer {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.timer span {
+    font-size: 20px;
+    margin: 0 5px;
+}
+
+.timer select {
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.timer span {
+    font-size: 18px;
+    margin: 0 5px;
+    font-weight: 300;
+}
+
+.timer select {
+    padding: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.timer-dropdown {
+    position: absolute;
+    top: 35px;
+    height: auto;
+    overflow: scroll;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 160px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 999999999999;
+}
+
+.timer-dropdown option {
+    padding: 10px;
+    color: #000;
+    cursor: pointer;
+    font-size: 14px;
+}
+.search1 span {
+    color: #fff;
+}
+.search-2 span {
+    color: #fff;
+}
+.timer-dropdown option:hover {
+    background-color: #f0f0f0;
+}
+
+.timer-dropdown .selected {
+    color: gold;
+}
+.popup-container {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color:#1f1f1f;
+    padding: 20px;
+    width: 100%;
+    max-width: 50%;
+    border-radius: 8px;
+    display: none;
+    z-index: 1000;
+}
+.popup-header {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 10px;
+}
+.search-bar {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #444;
+    background-color: #2a2a3a;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.symbol-list {
+    margin-top: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.symbol-item {
+    padding: 8px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+.symbol-item:hover {
+    background-color: #444;
+}
+
+.bottom-bar p {
+    margin: 0;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 300;
+}
+.row-content {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    justify-content: space-between;
+}
+.box-content {
+    width: 33.33%;
+    padding-left: 10px;
+    padding-top: 5px;
+    border-radius: 3px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    color: #ffffff !important;
+}
+.box-content p {
+    margin: 0;
+    padding-bottom: 5px;
+}
+p.sm-text {
+    font-size: 12px;
+}
+.box-content i {
+    font-size: 12px;
+}
+
+i.fa-solid.fa-magnifying-glass {
+    font-size: 15px;
+}
+.p-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top-bar.bottom-bar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #000000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+  
+  th, td {
+    text-align: left;
+    padding: 12px 15px;
+
+    border-bottom: 1px solid #ddd;
+  }
+  
+  td{
+    font-size: 14px;
+  }
+  th {
+    background-color: #000000;
+    font-weight: 400;
+  }
+  
+
+  .small-text {
+    font-size: 0.85em;
+    color: rgb(255, 0, 0);
+  }
+  
+  td span {
+    display: block;
+  }
+
+ 
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    border-radius: 8px;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #555;
+  }
+  
+  
+  .negative-value {
+    color: red;
+  }
+  
+ 
+ 
+  
+  thead th {
+    color: #fff;
+  }
+
+
+   ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px; 
+  }
+
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 5px; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: transparent; 
+    border-radius: 5px;
+  }
+
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
+
+    #content1 .row-content {
+        overflow-x: auto; /* Enables horizontal scrolling */
+        white-space: nowrap; /* Ensures the child elements don't wrap to the next line */
+    }
+
+    #content1 .box-content {
+        display: inline-block; /* Makes each box sit next to each other horizontally */
+        margin-right: 10px; /* Adds some space between boxes */
+    }
+
+    .tab-button {
+    cursor: pointer;
+  }
+  .tab-button.active {
+    color: #00e4a3;
+}
+
+   /* Chart container */
+   #trading-chart-wrapper {
+    position: relative;
+    height: 950px;
+    width: 100%;
+    background-color: #1E1E1E; /* Dark theme background */
+  }
+
+  #trade-info-dashboard {
+    position: absolute;
+    top: 0px;
+    right: 55px;
+    z-index: 9999;
+    background: rgb(51 51 51);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+}
+
+  #trade-info-dashboard h3{
+    margin: 0;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .trade-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .trade-table td, .trade-table th {
+    border: 1px solid #444;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .trade-table th {
+    background-color: #333;
+    color: white;
+  }
+
+  .trade-table td {
+    background-color: #2ECC71; /* Green cell for 'Long' */
+  }
+  .dropdown-screen{
+    display: inline-block;
+    position: relative;
+    border-radius: 3px !important;
+}
+.dropdown-screen select {
+    color: #fff;
+    padding: 2px;
+    font-size: 16px;
+    margin-left: 40px !important;
+    border-radius: 0px;
+    border: none;
+    background: #1f1f1f;
+}
+.dropdown-screen:focus-visible{
+    border: none;
+    outline: none;
+}
+#tradingview-widget-container {
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    display: flex; /* Optional: Ensures the chart fills the container */
+}
+html, body {
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default paddings */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+}
+.tv-lightweight-charts {
+    height: 100% !important;
+}

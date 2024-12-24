@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <title>Register</title>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h1>Signup Page </h1>
+      <p></p>
+      <div class="illustration">
+        <!-- Replace with your illustration image -->
+        <img src="{% static 'assets/image/Login-bro.png' %}" alt="Illustration">
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <h2>Register</h2>
+      <p>Welcome! Join us to enjoy exclusive features and benefits.</p>
+      <form method="post" action="../../accounts/signup/">
+        {% csrf_token %}
+        <input type="text" placeholder="Enter Username" class="input-field" name="username" required>
+        <input type="email" placeholder="Enter Mail" class="input-field" name="email" required>
+        <input type="password" placeholder="Password" class="input-field" name="password1" required>
+        <input type="password" placeholder="Confirm Password" class="input-field" name="password2" required>
+        <div class="forgot-password">
+          <a href="../../accounts/password_reset/">Forgot your password?</a>
+        </div>
+        <button type="submit" class="btn">Signup</button>
+      </form>
+      <p class="register-link">Already have an account? <a href="../../accounts/login">Signin</a></p>
+    </div>
+  </div>
+</body>
+</html>

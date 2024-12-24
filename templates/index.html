@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction</title>
+
+    
+    <script src="https://s3.tradingview.com/tv.js"></script>
+
+      
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling for the page and widgets remains the same */
+        /* Add your custom styles as needed */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Price Prediction</h1>
+
+        <div id="stock-price">Waiting for stock price data...</div>
+
+        
+        <div id="tradingview-widget-container"></div>
+    </div>
+
+    
+    
+    <script>
+        new TradingView.widget({
+            "width": "100%",
+            "height": "500",
+            "symbol": "AAPL",
+            "interval": "60",
+            "timezone": "Etc/UTC",
+            "theme": "light",
+            "style": "1",
+            "locale": "en",
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "allow_symbol_change": true,
+            "container_id": "tradingview-widget-container"
+        });
+    </script>
+</body>
+</html> 
+

@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Ui</title>
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/style1.css' %}">
+</head>
+
+<body>
+
+    <section class="profile-bar pt-5 pb-5">
+        <div class="container">
+            <div class="col-lg-12 d-flex justify-content-between align-items-center">
+                <div class="col-lg-5 d-flex">
+                
+                    <div class="col">
+                        <p>Admin</p>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="MuiStack-root css-v6dd5q">
+                        <div class="MuiStack-root css-f9mrh6">
+                            <span class="MuiTypography-root MuiTypography-caption css-12sd6q6">1 Week</span>
+                            <p class="MuiTypography-root MuiTypography-body2 css-krzovq">38.04%</p>
+                        </div>
+                        <div class="MuiBox-root css-qmw507"></div>
+                        <div class="MuiStack-root css-f9mrh6">
+                            <span class="MuiTypography-root MuiTypography-caption css-12sd6q6">1 Month</span>
+                            <p class="MuiTypography-root MuiTypography-body2 css-krzovq">88.93%</p>
+                        </div>
+                        <div class="MuiBox-root css-qmw507"></div>
+                        <div class="MuiStack-root css-f9mrh6">
+                            <span class="MuiTypography-root MuiTypography-caption css-12sd6q6">3 Months</span>
+                            <p class="MuiTypography-root MuiTypography-body2 css-krzovq">104.43%</p>
+                        </div>
+                        <div class="MuiBox-root css-qmw507"></div>
+                        <div class="MuiStack-root css-f9mrh6">
+                            <span class="MuiTypography-root MuiTypography-caption css-12sd6q6">Total</span>
+                            <p class="MuiTypography-root MuiTypography-body2 css-krzovq">402.68%</p>
+                        </div>
+                        <div class="MuiBox-root css-qmw507"></div>
+                        <!-- <div class="col buttons d-flex gap-3 align-items-center">
+                            <button class="frst-btn"><a href="#">What If...</a></button>
+                            <button class="sub-btn"><a href="#">Subscribe</a></button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="desc-sec">
+        <div class="container">
+            <div class="col-lg-12 d-flex justify-content-between align-items-center gap-3">
+               
+                <div class="col-lg-12">
+                    <div class="col d-flex justify-content-between gap-3">
+                        <div class="col">
+                            <div class="MuiPaper-root MuiPaper-widget MuiPaper-rounded css-nsl4si">
+                                <div class="MuiStack-root css-izuqqr">
+                                    <div class="MuiStack-root css-izuqqr"><span
+                                            class="MuiTypography-root MuiTypography-caption css-143a8ea">Current
+                                            Positions</span>
+                                        <p class="MuiTypography-root MuiTypography-body2 css-54t161">3</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="MuiPaper-root MuiPaper-widget MuiPaper-rounded css-nsl4si">
+                                <div class="MuiStack-root css-izuqqr">
+                                    <div class="MuiStack-root css-izuqqr"><span
+                                            class="MuiTypography-root MuiTypography-caption css-143a8ea">30-Day
+                                            Activity</span>
+                                        <p class="MuiTypography-root MuiTypography-body2 css-54t161">8 Events</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex justify-content-between gap-3 mt-3">
+                        <div class="col">
+                            <div class="MuiPaper-root MuiPaper-widget MuiPaper-rounded css-nsl4si">
+                                <div class="MuiStack-root css-izuqqr">
+                                    <div class="MuiStack-root css-izuqqr"><span
+                                            class="MuiTypography-root MuiTypography-caption css-143a8ea">Current
+                                            Positions</span>
+                                        <p class="MuiTypography-root MuiTypography-body2 css-54t161">3</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="MuiPaper-root MuiPaper-widget MuiPaper-rounded css-nsl4si">
+                                <div class="MuiStack-root css-izuqqr">
+                                    <div class="MuiStack-root css-izuqqr"><span
+                                            class="MuiTypography-root MuiTypography-caption css-143a8ea">30-Day
+                                            Activity</span>
+                                        <p class="MuiTypography-root MuiTypography-body2 css-54t161">8 Events</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chart-sec mb-5">
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Performance Chart -->
+                <div class="col-md-12">
+                    <!-- Chart Section -->
+                    <div class="chart-container">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="chart-header">Performance</h5>
+                            <label for="portfolioSelect">Select Portfolio</label>
+                            <select id="portfolioSelect" class="form-select w-auto selectpicker" data-live-search="true">
+                                <option selected>Compare</option>
+                                <option>Portfolio A</option>
+                                <option>Portfolio B</option>
+                            </select>
+                        </div>
+                        <!-- Timeframe Buttons -->
+                        <div class="timeframe-buttons">
+                            <button class="btn btn-outline-primary btn-sm" data-timeframe="1W">1W</button>
+                            <button class="btn btn-outline-primary btn-sm" data-timeframe="1M">1M</button>
+                            <button class="btn btn-outline-primary btn-sm" data-timeframe="3M">3M</button>
+                            <button class="btn btn-outline-primary btn-sm" data-timeframe="YTD">YTD</button>
+                            <button class="btn btn-outline-primary btn-sm" data-timeframe="1Y">1Y</button>
+                            <button class="btn btn-outline-primary btn-sm" data-timeframe="Max">Max</button>
+                        </div>
+    
+                        <p class="mt-3 performance-text text-success">
+                            +400% <small class="text-muted">Jun 12, 2024</small>
+                        </p>
+                        <!-- Placeholder Chart -->
+                        <div class="chart-placeholder mt-4">
+                            <!-- Replace this div with an actual chart using Chart.js or ApexCharts -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Chart.js -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+          // Create the initial chart
+          const ctx = document.createElement('canvas');
+          document.querySelector('.chart-placeholder').appendChild(ctx);
+  
+          const chart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels: ['Mar', 'May', 'Jul', 'Sep', 'Nov'],
+                  datasets: [{
+                      label: 'Performance',
+                      data: [0, 100, 200, 300, 400],
+                      borderColor: '#28a745',
+                      fill: true,
+                      backgroundColor: 'rgba(40, 167, 69, 0.2)',
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  plugins: {
+                      legend: { display: false }
+                  },
+                  scales: {
+                      y: { beginAtZero: true },
+                      x: { grid: { display: false } }
+                  }
+              }
+          });
+  
+          // Timeframe data and corresponding performance text
+          const timeframeData = {
+              '1W': { 
+                  labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri',"Sat"], 
+                  data: [10, 20, 15, 25, 30,45], 
+                  performance: { value: "+5.00%", date: "Jun 16, 2024", positive: true }
+              },
+              '1M': { 
+                  labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'], 
+                  data: [50, 100, 80, 120], 
+                  performance: { value: "+15.00%", date: "Jun 12, 2024", positive: true }
+              },
+              '3M': { 
+                  labels: ['Jan', 'Feb', 'Mar'], 
+                  data: [200, 250, 300], 
+                  performance: { value: "+30.00%", date: "Mar 12, 2024", positive: true }
+              },
+              'YTD': { 
+                  labels: ['Jan', 'Mar', 'May', 'Jul', 'Sep', 'Nov'], 
+                  data: [0, 25, 22, 45, 40, 20], 
+                  performance: { value: "+45.00%", date: "Jun 12, 2024", positive: true }
+              },
+              '1Y': { 
+                  labels: ['Q1', 'Q2', 'Q3', 'Q4'], 
+                  data: [100, 200, 300, 400], 
+                  performance: { value: "+400%", date: "Jun 12, 2024", positive: true }
+              },
+              'Max': { 
+                  labels: ['2019', '2020', '2021', '2022', '2023'], 
+                  data: [0, 150, 200, 350, 400], 
+                  performance: { value: "+100.00%", date: "Jun 12, 2024", positive: true }
+              }
+          };
+  
+          // Update chart and performance text on button click
+          const performanceText = document.querySelector('.performance-text');
+          const buttons = document.querySelectorAll('.timeframe-buttons button');
+          buttons.forEach(button => {
+              button.addEventListener('click', () => {
+                  const timeframe = button.getAttribute('data-timeframe');
+                  const { labels, data, performance } = timeframeData[timeframe];
+  
+                  // Update chart data
+                  chart.data.labels = labels;
+                  chart.data.datasets[0].data = data;
+                  chart.update();
+  
+                  // Update performance text
+                  performanceText.textContent = `${performance.value} `;
+                  performanceText.classList.toggle('text-danger', !performance.positive);
+                  performanceText.classList.toggle('text-success', performance.positive);
+                  const smallTag = document.createElement('small');
+                  smallTag.classList.add('text-muted');
+                  smallTag.textContent = performance.date;
+                  performanceText.appendChild(smallTag);
+              });
+          });
+      </script>
+
+
+
+<script>
+    const profile = document.getElementById('profile');
+    const dropdown = document.getElementById('dropdown');
+    profile.addEventListener('click', () => {
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+    window.addEventListener('click', (event) => {
+        if (!profile.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+</script>
+
+
+</body>
+
+</html>
+
+{% endblock %}

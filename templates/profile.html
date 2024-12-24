@@ -1,0 +1,386 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Overview - Dark Theme</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet">
+
+  <style>
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      width: 100%;
+      background-color: #1F1F1F;
+      color: white;
+      font-family: "Rubik", sans-serif;
+    }
+
+    .profile-container {
+      background: #000000;
+      padding: 30px;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      max-width: 100%;
+      padding-left: 0;
+      width: 70%;
+      margin: auto;
+    }
+
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-fields input[type="text"],
+    .profile-fields select,
+    .profile-fields textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: none;
+      color: #fff !important;
+      border-radius: 8px;
+      box-sizing: border-box;
+      background: #414040;
+    }
+
+    .profile-fields textarea {
+      height: 100px;
+    }
+
+    .profile-fields input[type="text"]:focus,
+    .profile-fields select:focus,
+    .profile-fields textarea:focus {
+      border-color: #a0d2eb;
+    }
+
+    .avatar-upload {
+      position: relative;
+      max-width: max-content;
+    }
+
+    .avatar-preview {
+      width: 150px;
+      height: 150px;
+      position: relative;
+      border-radius: 100%;
+      overflow: hidden;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .avatar-preview img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+
+    .full {
+      width: 100%;
+      gap: 10px;
+    }
+
+    .five {
+      width: 50%;
+    }
+
+    .main {
+      width: 100%;
+      padding: 20px 25px 20px 25px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: #000;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      z-index: 9999;
+      top: 41px;
+      right: 0;
+      width: 130px;
+      background-color: #1F1F1F;
+      color: black;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      border-radius: 3px;
+    }
+
+    .dropdown a {
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      display: block;
+      padding: 5px 0;
+      font-family: "Rubik", sans-serif;
+      transition: 0.3s ease-in-out;
+    }
+
+    .dropdown a:hover {
+      color: #00E4A3;
+    }
+
+    /* Card Container */
+    .user-card {
+      width: 100%;
+      background-color: #ddd8d8;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    /* Header Section */
+    .user-header {
+      height: 150px;
+      background-size: cover;
+      background-color: #5f5f5f;
+      background-position: center;
+    }
+
+    /* Profile Image */
+    .profile-picture {
+      position: relative;
+      margin: -70px auto 10px;
+      width: 140px;
+      height: 140px;
+      border: 5px solid #fff;
+      border-radius: 50%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .profile-picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* User Info */
+    .user-info {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .user-info h2 {
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .user-info p {
+      font-size: 14px;
+      color: #777;
+    }
+
+    /* Divider */
+    .line-divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 10px 0;
+    }
+
+    /* Details Section */
+    .user-details {
+      padding: 10px 20px;
+    }
+
+    .details-title {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .details-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 6px 0;
+      flex-direction: row-reverse;
+    }
+
+    .details-row span {
+      color: #555;
+      font-size: 14px;
+    }
+
+    .details-row strong {
+      color: #333;
+    }
+
+    /* Bio Section */
+    .user-bio {
+      text-align: center;
+      padding: 10px 20px 20px;
+      font-size: 14px;
+      color: #777;
+    }
+
+    @media(max-width:768px) {
+      .main {
+        flex-direction: column;
+      }
+
+      .profile-container {
+        margin-bottom: 20px !important;
+        max-width: 100%;
+        padding-left: 0;
+        width: 100%;
+        margin: auto;
+      }
+    }
+  </style>
+
+
+  </style>
+</head>
+
+<body>
+
+  <div class="main">
+    <div class="profile-container">
+      <!-- Header Section -->
+      <div class="profile-header">
+        <h2>Jacob Jones</h2>
+        <!-- <div class="avatar-upload">
+                    <div class="avatar-preview">
+                        <img src="{% static '/assets/image/profile.webp' %}" alt="Profile Picture">
+                    </div>
+                </div> -->
+      </div>
+
+      <!-- Profile Fields -->
+      <div class="profile-fields mt-3">
+        <div class="d-flex justify-content-between full">
+          <div class="five">
+            <label>First Name</label>
+            <input type="text" placeholder="Enter First Name" value="John">
+          </div>
+          <div class="five">
+            <label>Last Name</label>
+            <input type="text" placeholder="Enter Last Name" value="Doe">
+          </div>
+        </div>
+
+        <label>Email</label>
+        <input type="text" placeholder="Enter Email" value="admin@example.com">
+
+        <label>Username</label>
+        <input type="text" placeholder="Enter Username" value="admin123">
+
+        <div class="d-flex justify-content-between full">
+          <div class="five">
+            <label>Password</label>
+            <input type="text" placeholder="Enter Password" value="securepass">
+          </div>
+          <div class="five">
+            <label>Confirm Password</label>
+            <input type="text" placeholder="Enter Confirm Password" value="securepass">
+          </div>
+        </div>
+
+
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary">Edit Profile</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-profile">
+      <!-- User Card -->
+      <div class="user-card">
+        <!-- Header Section -->
+        <div class="user-header"></div>
+
+        <!-- Profile Picture -->
+        <div class="profile-picture">
+          <img src="{% static '/assets/image/profile.webp' %}" alt="Profile Picture">
+        </div>
+
+        <!-- User Info -->
+        <div class="user-info">
+          <h2>Jacob Jones</h2>
+          <p>ifrandom@gmail.com</p>
+        </div>
+
+        <!-- Divider -->
+        <hr class="line-divider">
+
+        <!-- User Details -->
+        <div class="user-details">
+          <div class="details-row">
+            <span>Will Jonto :</span>
+            <strong>Full Name</strong>
+          </div>
+          <div class="details-row">
+            <span>willjontoax@gmail.com :</span>
+            <strong>Email</strong>
+          </div>
+          <div class="details-row">
+            <span>Will Jonto</span>
+            <strong>Username</strong>
+          </div>
+          <div class="details-row">
+            <span>Demo@123</span>
+            <strong>Password</strong>
+          </div>
+        </div>
+
+        <!-- Bio Section -->
+        <div class="user-bio">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <script>
+
+
+
+    const profile = document.getElementById('profile');
+    const dropdown = document.getElementById('dropdown');
+
+    profile.addEventListener('click', () => {
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (!profile.contains(event.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+
+</html>
+
+
+
+{% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <title>Login Page</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+ 
+
+
+  
+
+  {% if message1 %}
+  <script>
+    Swal.fire({
+      position: "center",
+      icon: "warning",
+      title: "{{ message1 }}",
+      showConfirmButton: false,
+      timer: 1500
+    });
+</script>
+  {% endif %}
+
+{% if message3 %}
+<script>
+  
+  Swal.fire({
+      position: 'center',
+      icon: "success",
+      title: "{{ message3 }}",
+      showConfirmButton: false,
+      timer: 1500
+  });
+</script>
+
+      
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+  <div class="container">
+    <div class="left-panel">
+      <h1>Login Page </h1>
+      <p></p>
+      <div class="illustration">
+        <!-- Replace with your illustration image -->
+        <img src="{% static 'assets/image/Login-bro.png' %}" alt="Illustration">
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <h2>Welcome back</h2>
+      <p>Please sign-in to your account and start trading.</p>
+      <form method="post" action="../../accounts/login/">
+        {% csrf_token %}
+        <input type="text" placeholder="Enter Username" class="input-field" name="username" required>
+        <input type="password" placeholder="Password" class="input-field" name="password" required>
+        <div class="forgot-password">
+          <a href="{% url 'password_reset' %}">Forgot your password?</a>
+          
+          
+          <!-- <a href="#">Forgot your password?</a> -->
+        </div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <p class="register-link">Don't have an account? <a href="../../accounts/signup">Register</a></p>
+    </div>
+  </div>
+</body>
+</html>

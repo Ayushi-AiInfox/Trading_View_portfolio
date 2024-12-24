@@ -152,4 +152,3 @@ for ticker in tickers:
     print(f"200-Day SMA: {sma_200:.2f} USD")
     print(f"Technical Rating: {technical_rating}")
     print("-------")
-

@@ -2,17 +2,14 @@
     "version": 2,
     "builds": [
       {
-        "src": "manage.py",
-        "use": "@vercel/python",
-        "config": {
-          "maxLambdaSize": "50mb"
-        }
+        "src": "index.html",
+        "use": "@vercel/static"
       }
     ],
     "routes": [
       {
-        "src": "/",
-        "dest": "manage.py"
+        "src": "/api/(.*)",
+        "dest": "http://16.171.116.126:8000/accounts/login/"
       }
     ]
   }

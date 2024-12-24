@@ -15,11 +15,16 @@ KEY= "SADFSyFSv-aD&WF9AWEgBLA1a323%423RB#JfVD@-2FeNEJtNVIER=EVER%n5"
 DEBUG = True
 
 # ALLOWED_HOSTS - allow all hosts for development, restrict in production
-ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_ALLOW_ALL = True
-'''CORS_ORIGIN_WHITELIST = (
-  'http://localhost:8000',
-)'''  
+# ALLOWED_HOSTS = ['*']
+# CORS_ORIGIN_ALLOW_ALL = True
+# '''CORS_ORIGIN_WHITELIST = (
+#   'http://localhost:8000',
+# )'''  
+
+CORS_ALLOWED_ORIGINS = [
+    'https://trading-view-portfolio-krj4mwe7b-ayushi-aiinfoxs-projects.vercel.app',
+    'http://16.171.116.126:8000',  ]
+
 CORS_ALLOW_METHODS = [
     'DELETE',
     'GET',
@@ -58,6 +63,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'TradingView',
+    'corsheaders',
     
    
    
@@ -73,6 +79,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    
     
 ]
 
